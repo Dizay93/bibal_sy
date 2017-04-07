@@ -28,7 +28,7 @@ public class ExemplaireManager implements ExemplaireInterface{
          try {
             
             DbInteraction.Connect();
-            String sql="insert into exemplaire(OeuvreID,Etat) values ('"+e.getOe().getID()+"','"+e.getEtat()+"')";
+            String sql="insert into exemplaire(OeuvreID,Etat) values ('"+e.getOv()+"','"+e.getEtat()+"')";
             DbInteraction.update(sql);
             DbInteraction.disconnect();
             
@@ -65,7 +65,7 @@ public class ExemplaireManager implements ExemplaireInterface{
         try {
               
             DbInteraction.Connect();
-            String sql="select * from exemplaire where Nom like '%" + ID + "%' ";
+            String sql="select * from exemplaire where ID like '%" + ID + "%' ";
             DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
             DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
             
@@ -78,11 +78,11 @@ public class ExemplaireManager implements ExemplaireInterface{
     }
 
     @Override
-    public void SupprimerExemplaire(int ID) {
+    public void SupprimerExemplaire(int ide) {
         try {
-            String IDD=null;
+            
             DbInteraction.Connect();
-            String sql="delete from exemplaire where ID='"+ID+"'";
+            String sql="delete from exemplaire where ID='"+ide+"'";
             DbInteraction.update(sql);
             DbInteraction.disconnect();
            
@@ -93,11 +93,11 @@ public class ExemplaireManager implements ExemplaireInterface{
     }
 
     @Override
-    public void ModifierExemplaire(Exemplaire e) {
+    public void ModifierExemplaire(Exemplaire e,int ide) {
         try {
-            String ID=null;
+            
             DbInteraction.Connect();
-            String sql="update exemplaire set Etat='"+e.getEtat()+"' where ID="+ID+"";
+            String sql="update exemplaire set Etat='"+e.getEtat()+"' where ID="+ide+"";
             DbInteraction.update(sql);
             DbInteraction.disconnect();
             
