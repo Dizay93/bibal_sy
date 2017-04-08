@@ -5,10 +5,15 @@
  */
 package bibal_yazid_saad.Controller;
 
+import bibal_yazid_saad.Connection.DbInteraction;
 import bibal_yazid_saad.DAO.ExemplaireManager;
 import bibal_yazid_saad.Model.Exemplaire;
 import bibal_yazid_saad.Model.Oeuvre;
 import bibal_yazid_saad.View.IHMexemplaire;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,9 +28,9 @@ public class ExemplaireControler {
     ExemplaireManager=new ExemplaireManager();
     
 }
-  public void ajouterExemplaire(Oeuvre oe,String Etat){
+  public void ajouterExemplaire(int ov,String Etat){
       
-      e= new Exemplaire(oe,Etat);
+      e= new Exemplaire(ov,Etat);
       ExemplaireManager.ajouterExemplaire(e);
       
       
@@ -42,15 +47,19 @@ public class ExemplaireControler {
         ExemplaireManager.FindByID(ID); 
         return e;
     }
-    public void SupprimerExemplaire(int ID){
+     public Exemplaire FindByOeuvre(String titre) {
+          Exemplaire e=null;
+       ExemplaireManager.FindByOeuvre(titre);
+      return e;}
+    public void SupprimerExemplaire(int ide){
            
-      ExemplaireManager.SupprimerExemplaire(ID);
+      ExemplaireManager.SupprimerExemplaire(ide);
         
     }
-  public void ModifierExemplaire( String Etat){
+  public void ModifierExemplaire( String Etat,int ide){
       Exemplaire e;
       e = new Exemplaire(Etat);
-      ExemplaireManager.ModifierExemplaire(e);
+      ExemplaireManager.ModifierExemplaire(e,ide);
       
   }
 }

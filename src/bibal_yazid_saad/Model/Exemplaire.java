@@ -12,13 +12,14 @@ package bibal_yazid_saad.Model;
 public class Exemplaire {
     private int ID;
      Oeuvre oe;
+    private int ov;
     private String Etat;
    
 
-    public Exemplaire(Oeuvre oe,String Etat ) {
+    public Exemplaire(int ov,String Etat ) {
         this.ID = ID;
         this.Etat = Etat;
-        this.oe = oe;
+        this.ov = ov;
     }
 
     public Exemplaire(String Etat) {
@@ -40,6 +41,14 @@ public class Exemplaire {
 
     public void setEtat(String Etat) {
         this.Etat = Etat;
+    }
+
+    public int getOv() {
+        return ov;
+    }
+
+    public void setOv(int ov) {
+        this.ov = ov;
     }
 
     public Oeuvre getOe() {

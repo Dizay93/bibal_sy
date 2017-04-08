@@ -15,6 +15,7 @@ public interface ExemplaireInterface {
     public void ajouterExemplaire(Exemplaire e);
     public Object[][] Lister();
     public Exemplaire FindByID(int ID);
-    public void SupprimerExemplaire(int ID);
-    public void ModifierExemplaire(Exemplaire e);
+    public Exemplaire FindByOeuvre(String titre);
+    public void SupprimerExemplaire(int ide);
+    public void ModifierExemplaire(Exemplaire e,int ide);
 }

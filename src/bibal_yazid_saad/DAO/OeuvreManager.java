@@ -81,11 +81,11 @@ public class OeuvreManager implements OeuvreInterface{
     }
 
     @Override
-    public void SupprimerOeuvre(String titre) {
-          String ID=null;
+    public void SupprimerOeuvre(int ido) {
+          
         try {
             DbInteraction.Connect();
-             String sql="delete from oeuvre where ID='"+ID+"'";
+             String sql="delete from oeuvre where ID='"+ido+"'";
             DbInteraction.update(sql);
             DbInteraction.disconnect();
         } catch (SQLException ex) {

@@ -41,15 +41,17 @@ public class UsagerControler {
         UsagerManager.FindByName(Nom); 
         return u;
     }
-    public void SupprimerUsager(String Nom){
+    public void SupprimerUsager(int idu){
            
-      UsagerManager.SupprimerUsager(Nom);
-        
+            UsagerManager.SupprimerUsager(idu);
+     
     }
-  public void ModifierUsager(String Nom, String Prenom, Date Date_Naissance, String Tel, String Adresse){
+  public void ModifierUsager(String Nom, String Prenom, Date Date_Naissance, String Tel, String Adresse,int idu){
       Usager u;
       u = new Usager(Nom, Prenom, Date_Naissance, Tel, Adresse);
-      UsagerManager.ModifierUsager(u);
+      UsagerManager.ModifierUsager(u,idu);
       
   }
+
+    
 }

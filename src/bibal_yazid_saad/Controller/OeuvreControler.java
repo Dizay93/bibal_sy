@@ -42,9 +42,9 @@ public class OeuvreControler {
         OeuvreManager.FindByTitle(titre);
         return o;
     }
-    public void SupprimerOeuvre( String titre){
+    public void SupprimerOeuvre( int ido){
            
-      OeuvreManager.SupprimerOeuvre(titre);
+      OeuvreManager.SupprimerOeuvre(ido);
         
     }
  

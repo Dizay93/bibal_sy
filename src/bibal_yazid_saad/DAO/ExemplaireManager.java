@@ -107,5 +107,22 @@ public class ExemplaireManager implements ExemplaireInterface{
         }
         
     }
+
+    @Override
+    public Exemplaire FindByOeuvre(String titre) {
+          Exemplaire e=null;
+        try {
+              
+            DbInteraction.Connect();
+            String sql="select exemplaire.ID,exemplaire.Etat,exemplaire.OeuvreID,oeuvre.Titre from exemplaire,oeuvre where oeuvre.ID=exemplaire.OeuvreID and oeuvre.Titre like '%" + titre+ "%' ";
+            DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
+            DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
+            
+           
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, ex);
+        }
+      return e;
+    }
     
 }

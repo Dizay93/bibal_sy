@@ -19,7 +19,7 @@ public interface UsagerInterface {
     public void ajouterUsager(Usager u);
     public Object[][] Lister();
     public Usager FindByName(String Nom);
-    public void SupprimerUsager(String Nom);
-    public void ModifierUsager(Usager u);
+    public void SupprimerUsager(int idu);
+    public void ModifierUsager(Usager u,int idu);
     
 }

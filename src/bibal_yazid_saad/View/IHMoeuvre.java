@@ -79,7 +79,7 @@ public class IHMoeuvre extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Ajouter Oeuvre");
+        jLabel3.setText("Info Oeuvre");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,8 +216,8 @@ public class IHMoeuvre extends javax.swing.JFrame {
                 .addGap(195, 195, 195))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(433, 433, 433))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(544, 544, 544))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +279,7 @@ public class IHMoeuvre extends javax.swing.JFrame {
 
         NomForSearch.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         NomForSearch.setForeground(new java.awt.Color(255, 255, 255));
-        NomForSearch.setText("Titre");
+        NomForSearch.setText("Chercher Par Titre");
 
         Titrech.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -322,8 +322,7 @@ public class IHMoeuvre extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(NomForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NomForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -392,6 +391,7 @@ public class IHMoeuvre extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Ajout Avec Succés","OK",JOptionPane.INFORMATION_MESSAGE);
         
         oc.Lister();
+        TableOeuvre.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
           viderr();
          
          
@@ -480,11 +480,12 @@ public  void viderr(){
      
          
         int row=IHMoeuvre.TableOeuvre.getSelectedRow();
-        String ID=(TableOeuvre.getModel().getValueAt(row, 0).toString());
-         oc.SupprimerOeuvre(titre.getText());
+        String ido=(TableOeuvre.getModel().getValueAt(row, 0).toString());
+         oc.SupprimerOeuvre(Integer.parseInt(ido));
   
          JOptionPane.showMessageDialog(null, "Suppression Avec Succés");
          oc.Lister();
+         TableOeuvre.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
         viderr();
         
         

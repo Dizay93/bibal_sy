@@ -15,7 +15,7 @@ public interface OeuvreInterface {
      public void AjouterOeuvre (Oeuvre o);
     public Object[][] Lister();
     public Oeuvre FindByTitle(String titre);
-    public void SupprimerOeuvre(String titre);
+    public void SupprimerOeuvre(int ido);
     
     
 }

@@ -83,11 +83,11 @@ public class UsagerManager implements UsagerInterface{
     }
 
     @Override
-    public void SupprimerUsager(String Nom) {
+    public void SupprimerUsager(int idu) {
         try {
-           String ID = null;
+           
             DbInteraction.Connect();
-            String sql="delete from usager where ID='"+ID+"'";
+            String sql="delete from usager where ID='"+idu+"'";
             DbInteraction.update(sql);
             DbInteraction.disconnect();
            
@@ -98,11 +98,11 @@ public class UsagerManager implements UsagerInterface{
     }
 
     @Override
-    public void ModifierUsager(Usager u) {
+    public void ModifierUsager(Usager u,int idu) {
         try {
            
             DbInteraction.Connect();
-            String sql="update usager set Nom='"+u.getNom()+"',Prenom='"+u.getPrenom()+"',Date_Naissance='"+u.getDate_Naissance()+"',Tel='"+u.getTel()+"',Adresse='"+u.getAdresse()+"' where ID="+u.getID()+"";
+            String sql="update usager set Nom='"+u.getNom()+"',Prenom='"+u.getPrenom()+"',Date_Naissance='"+u.getDate_Naissance()+"',Tel='"+u.getTel()+"',Adresse='"+u.getAdresse()+"' where ID="+idu+"";
             DbInteraction.update(sql);
             DbInteraction.disconnect();
             
