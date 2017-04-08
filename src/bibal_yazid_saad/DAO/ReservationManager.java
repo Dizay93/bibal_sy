@@ -27,7 +27,7 @@ public class ReservationManager implements ReservationInterface {
         try {
             
             DbInteraction.Connect();
-            String sql="insert into reservation(OeuvreID,UsagerID,DateReservation,DateAnnulation,Etat) values ('"+r.getOeuvreid()+"','"+r.getUsagerid()+"','"+r.getDate_reservation()+"','"+r.getDate_annulation()+"','"+r.getEtat()+"')";
+            String sql="insert into reservation(OeuvreID,UsagerID,DateReservation,Etat) values ('"+r.getOeuvreid()+"','"+r.getUsagerid()+"','"+r.getDate_reservation()+"','"+r.getEtat()+"')";
             DbInteraction.update(sql);
             DbInteraction.disconnect();
             
@@ -82,6 +82,26 @@ public class ReservationManager implements ReservationInterface {
     public void annuler(Reservation r) {
         
         
+    }
+
+    @Override
+    public Object[][] Lister() {
+         Object[][] o = null;
+            
+            
+        try {
+            DbInteraction.Connect();
+            
+            String sql="select * from reservation ";
+            DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
+            DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(OeuvreManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return o;
     }
     
     

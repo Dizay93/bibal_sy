@@ -23,7 +23,7 @@ import net.proteanit.sql.DbUtils;
  *
  * @author dizay
  */
-public class IHMexemplaire extends javax.swing.JFrame {
+public class IHMreservation extends javax.swing.JFrame {
 
     /**
      * Creates new form IHMusager
@@ -31,7 +31,7 @@ public class IHMexemplaire extends javax.swing.JFrame {
     OeuvreControler  oc=new OeuvreControler(); 
     ExemplaireControler ec=new ExemplaireControler();
        
-    public IHMexemplaire() {
+    public IHMreservation() {
         initComponents();
          
     }
@@ -553,7 +553,7 @@ public  void viderr(){
         // TODO add your handling code here:
      
          
-        int row=IHMexemplaire.TableExemplaire.getSelectedRow();
+        int row=IHMreservation.TableExemplaire.getSelectedRow();
         String ide=(TableExemplaire.getModel().getValueAt(row, 0).toString());
          ec.SupprimerExemplaire(Integer.parseInt(ide));
   
@@ -626,7 +626,7 @@ public  void viderr(){
 
     private void BmodfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmodfActionPerformed
         // TODO add your handling code here:
-            int row=IHMexemplaire.TableExemplaire.getSelectedRow();
+            int row=IHMreservation.TableExemplaire.getSelectedRow();
             String ide=(TableExemplaire.getModel().getValueAt(row, 0).toString());
         ec.ModifierExemplaire(etat.getSelectedItem().toString(),Integer.parseInt(ide));
 
@@ -733,14 +733,18 @@ public  void viderr(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IHMexemplaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMreservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IHMexemplaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMreservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IHMexemplaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMreservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IHMexemplaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMreservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -749,7 +753,7 @@ public  void viderr(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IHMexemplaire().setVisible(true);
+                new IHMreservation().setVisible(true);
             }
         });
     }
