@@ -49,21 +49,19 @@ public class IHMreservation extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        titreov = new javax.swing.JTextField();
+        usID = new javax.swing.JTextField();
         ajouter = new javax.swing.JButton();
         Bsupp = new javax.swing.JButton();
         vd = new javax.swing.JButton();
         Bmodf = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        expid = new javax.swing.JTextField();
         Blist12 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        ovidd = new javax.swing.JTextField();
+        oeid = new javax.swing.JTextField();
         vidertableau = new javax.swing.JButton();
         chexp = new javax.swing.JButton();
-        etat = new javax.swing.JComboBox<String>();
+        etat = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TableExemplaire = new javax.swing.JTable();
+        TableReservation = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         NomForSearch = new javax.swing.JLabel();
         Titrech = new javax.swing.JTextField();
@@ -71,7 +69,7 @@ public class IHMreservation extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        TableOeuvre1 = new javax.swing.JTable();
+        TableOeuvre2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -86,7 +84,7 @@ public class IHMreservation extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Info Exemplaire");
+        jLabel3.setText("Info Reservation");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -96,11 +94,11 @@ public class IHMreservation extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Etat");
 
-        titreov.setEditable(false);
-        titreov.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        titreov.addKeyListener(new java.awt.event.KeyAdapter() {
+        usID.setEditable(false);
+        usID.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        usID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                titreovKeyTyped(evt);
+                usIDKeyTyped(evt);
             }
         });
 
@@ -157,20 +155,6 @@ public class IHMreservation extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("ExemplaireID");
-
-        expid.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        expid.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                expidKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                expidKeyTyped(evt);
-            }
-        });
-
         Blist12.setBackground(new java.awt.Color(0, 0, 0));
         Blist12.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         Blist12.setForeground(new java.awt.Color(255, 255, 255));
@@ -183,13 +167,13 @@ public class IHMreservation extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("OeuvreTitre");
+        jLabel5.setText("UsagerID");
 
-        ovidd.setEditable(false);
-        ovidd.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        ovidd.addKeyListener(new java.awt.event.KeyAdapter() {
+        oeid.setEditable(false);
+        oeid.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        oeid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                oviddKeyTyped(evt);
+                oeidKeyTyped(evt);
             }
         });
 
@@ -222,7 +206,7 @@ public class IHMreservation extends javax.swing.JFrame {
         });
 
         etat.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        etat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NoChoice", "Neuf", "Bon", "Vieux", " " }));
+        etat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NoChoice", "Reservé", "NonReservé", "Annulé", " " }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,28 +214,23 @@ public class IHMreservation extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(37, 37, 37))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(19, 19, 19)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel4)))
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(titreov, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                        .addComponent(ovidd)
-                        .addComponent(expid)))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usID, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(oeid)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel2)
+                        .addGap(41, 41, 41)
+                        .addComponent(etat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -280,15 +259,15 @@ public class IHMreservation extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ovidd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oeid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vd))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(titreov, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
+                            .addComponent(usID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(124, 124, 124)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(etat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -300,10 +279,7 @@ public class IHMreservation extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Bsupp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Blist12)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(expid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Blist12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(vidertableau)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -311,36 +287,36 @@ public class IHMreservation extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        TableExemplaire.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        TableExemplaire.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        TableExemplaire.setForeground(new java.awt.Color(102, 102, 102));
-        TableExemplaire.setModel(new javax.swing.table.DefaultTableModel(
+        TableReservation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        TableReservation.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        TableReservation.setForeground(new java.awt.Color(102, 102, 102));
+        TableReservation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Etat", "OeuvreID"
+                "ID", "OeuvreID", "UsagerID", "DateReservation", "Etat"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                true, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        TableExemplaire.setGridColor(new java.awt.Color(255, 255, 255));
-        TableExemplaire.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        TableExemplaire.addMouseListener(new java.awt.event.MouseAdapter() {
+        TableReservation.setGridColor(new java.awt.Color(255, 255, 255));
+        TableReservation.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        TableReservation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TableExemplaireMouseClicked(evt);
+                TableReservationMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(TableExemplaire);
+        jScrollPane2.setViewportView(TableReservation);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -389,38 +365,41 @@ public class IHMreservation extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
+                .addContainerGap()
                 .addComponent(NomForSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(Blist, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(608, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(476, 476, 476))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Blist)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Blist, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
+                    .addComponent(NomForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(Blist))
+                .addGap(23, 23, 23))
         );
 
-        TableOeuvre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        TableOeuvre1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        TableOeuvre1.setForeground(new java.awt.Color(102, 102, 102));
-        TableOeuvre1.setModel(new javax.swing.table.DefaultTableModel(
+        TableOeuvre2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        TableOeuvre2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        TableOeuvre2.setForeground(new java.awt.Color(102, 102, 102));
+        TableOeuvre2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -431,37 +410,38 @@ public class IHMreservation extends javax.swing.JFrame {
                 "ID", "Titre", "Auteur", "NbrReservation", "Lending", "Lending2", "Type"
             }
         ));
-        TableOeuvre1.setGridColor(new java.awt.Color(255, 255, 255));
-        TableOeuvre1.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        TableOeuvre1.addMouseListener(new java.awt.event.MouseAdapter() {
+        TableOeuvre2.setGridColor(new java.awt.Color(255, 255, 255));
+        TableOeuvre2.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        TableOeuvre2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TableOeuvre1MouseClicked(evt);
+                TableOeuvre2MouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(TableOeuvre1);
+        jScrollPane3.setViewportView(TableOeuvre2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -475,18 +455,18 @@ public class IHMreservation extends javax.swing.JFrame {
     private void ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterActionPerformed
         // TODO add your handling code here:
        
-         if(ovidd.getText().equals("") || etat.getSelectedItem().equals("NoChoice")){
+         if(oeid.getText().equals("") || etat.getSelectedItem().equals("NoChoice")){
              JOptionPane.showMessageDialog(null, "Remplir Tous Les Champs Avant Ajouter","Erreur",JOptionPane.ERROR_MESSAGE);
             JOptionPane.showMessageDialog(null, "Choisir Un Etat D'Exemplaire","Erreur",JOptionPane.ERROR_MESSAGE);
          }
          else{
              
       
-        ec.ajouterExemplaire(Integer.parseInt(ovidd.getText()),etat.getSelectedItem().toString());
+        ec.ajouterExemplaire(Integer.parseInt(oeid.getText()),etat.getSelectedItem().toString());
         JOptionPane.showMessageDialog(null, "Ajout Avec Succés","OK",JOptionPane.INFORMATION_MESSAGE);
         
         ec.Lister();
-        TableExemplaire.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+        TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
           viderr();
          
          
@@ -499,22 +479,22 @@ public class IHMreservation extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         oc.Lister();
-      TableOeuvre1.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+      TableOeuvre2.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
     }//GEN-LAST:event_BlistActionPerformed
 
-    private void TableExemplaireMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableExemplaireMouseClicked
+    private void TableReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableReservationMouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_TableExemplaireMouseClicked
+    }//GEN-LAST:event_TableReservationMouseClicked
         public void videtable(){
-            DefaultTableModel dm = (DefaultTableModel) TableOeuvre1.getModel();
+            DefaultTableModel dm = (DefaultTableModel) TableOeuvre2.getModel();
 
         while(dm.getRowCount()>0){
             for(int i=0;i<dm.getRowCount();i++){
                 dm.removeRow(i);
             }}}
             public void videtableex(){
-            DefaultTableModel dm = (DefaultTableModel) TableExemplaire.getModel();
+            DefaultTableModel dm = (DefaultTableModel) TableReservation.getModel();
 
         while(dm.getRowCount()>0){
             for(int i=0;i<dm.getRowCount();i++){
@@ -529,7 +509,7 @@ public class IHMreservation extends javax.swing.JFrame {
         
         
         oc.FindByTitle(Titrech.getText());
-        TableOeuvre1.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+        TableOeuvre2.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
         
         
         // if(Nomrech.getText().equals("")){
@@ -545,31 +525,31 @@ public class IHMreservation extends javax.swing.JFrame {
          
     }//GEN-LAST:event_TitrechKeyReleased
 public  void viderr(){
-        titreov.setText("");
+        usID.setText("");
         etat.setSelectedItem("");
-        expid.setText("");
+        
 }
     private void BsuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsuppActionPerformed
         // TODO add your handling code here:
      
          
-        int row=IHMreservation.TableExemplaire.getSelectedRow();
-        String ide=(TableExemplaire.getModel().getValueAt(row, 0).toString());
+        int row=IHMreservation.TableReservation.getSelectedRow();
+        String ide=(TableReservation.getModel().getValueAt(row, 0).toString());
          ec.SupprimerExemplaire(Integer.parseInt(ide));
   
          JOptionPane.showMessageDialog(null, "Suppression Avec Succés");
          ec.Lister();
-          TableExemplaire.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+          TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
             viderr();
         
         
         
     }//GEN-LAST:event_BsuppActionPerformed
 
-    private void titreovKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_titreovKeyTyped
+    private void usIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usIDKeyTyped
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_titreovKeyTyped
+    }//GEN-LAST:event_usIDKeyTyped
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -626,23 +606,23 @@ public  void viderr(){
 
     private void BmodfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmodfActionPerformed
         // TODO add your handling code here:
-            int row=IHMreservation.TableExemplaire.getSelectedRow();
-            String ide=(TableExemplaire.getModel().getValueAt(row, 0).toString());
+            int row=IHMreservation.TableReservation.getSelectedRow();
+            String ide=(TableReservation.getModel().getValueAt(row, 0).toString());
         ec.ModifierExemplaire(etat.getSelectedItem().toString(),Integer.parseInt(ide));
 
         JOptionPane.showMessageDialog(null, "Modification Avec Succés");
         viderr();
         ec.Lister();
-         TableExemplaire.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+         TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
 
     }//GEN-LAST:event_BmodfActionPerformed
 
-    private void TableOeuvre1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOeuvre1MouseClicked
+    private void TableOeuvre2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOeuvre2MouseClicked
         // TODO add your handling code here:
         
         try {
-            int row=TableOeuvre1.getSelectedRow();
-            String Table_click=(TableOeuvre1.getModel().getValueAt(row, 0).toString());
+            int row=TableOeuvre2.getSelectedRow();
+            String Table_click=(TableOeuvre2.getModel().getValueAt(row, 0).toString());
             
              String sql="select * from oeuvre where ID='"+Table_click+"' ";
             DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
@@ -652,9 +632,9 @@ public  void viderr(){
                 
                 
                 String add1=DbInteraction.rs.getString("ID");
-                ovidd.setText(add1);
+                oeid.setText(add1);
                 String add2=DbInteraction.rs.getString("Titre");
-                titreov.setText(add2);
+                usID.setText(add2);
                  
                  
            
@@ -667,35 +647,18 @@ public  void viderr(){
         }
         
        
-    }//GEN-LAST:event_TableOeuvre1MouseClicked
-
-    private void expidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_expidKeyTyped
-        // TODO add your handling code here:
-      
-        
-    }//GEN-LAST:event_expidKeyTyped
+    }//GEN-LAST:event_TableOeuvre2MouseClicked
 
     private void Blist12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Blist12ActionPerformed
         // TODO add your handling code here:
         ec.Lister();
-        TableExemplaire.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+        TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
                 
     }//GEN-LAST:event_Blist12ActionPerformed
 
-    private void expidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_expidKeyReleased
+    private void oeidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oeidKeyTyped
         // TODO add your handling code here:
-          ec.FindByID(Integer.parseInt(expid.getText()));
-        TableExemplaire.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
-        if( evt.getKeyCode() == KeyEvent.VK_BACK_SPACE ){
-         
-                videtableex();
-            
-    }
-    }//GEN-LAST:event_expidKeyReleased
-
-    private void oviddKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oviddKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oviddKeyTyped
+    }//GEN-LAST:event_oeidKeyTyped
 
     private void vidertableauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vidertableauActionPerformed
         // TODO add your handling code here:
@@ -704,8 +667,8 @@ public  void viderr(){
 
     private void chexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chexpActionPerformed
         // TODO add your handling code here:
-          ec.FindByOeuvre(titreov.getText());
-        TableExemplaire.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+          ec.FindByOeuvre(usID.getText());
+        TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
     }//GEN-LAST:event_chexpActionPerformed
 
     private void chexpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chexpKeyPressed
@@ -764,26 +727,24 @@ public  void viderr(){
     private javax.swing.JButton Bmodf;
     private javax.swing.JButton Bsupp;
     private javax.swing.JLabel NomForSearch;
-    private static javax.swing.JTable TableExemplaire;
-    private javax.swing.JTable TableOeuvre1;
+    private javax.swing.JTable TableOeuvre2;
+    private static javax.swing.JTable TableReservation;
     private javax.swing.JTextField Titrech;
     private javax.swing.JButton ajouter;
     private javax.swing.JButton chexp;
     private javax.swing.JComboBox<String> etat;
-    private javax.swing.JTextField expid;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField ovidd;
-    private javax.swing.JTextField titreov;
+    private javax.swing.JTextField oeid;
+    private javax.swing.JTextField usID;
     private javax.swing.JButton vd;
     private javax.swing.JButton vidertableau;
     // End of variables declaration//GEN-END:variables

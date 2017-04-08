@@ -26,7 +26,7 @@ public class ExemplaireManager implements ExemplaireInterface{
     @Override
     public void ajouterExemplaire(Exemplaire e){
          try {
-            
+             
             DbInteraction.Connect();
             String sql="insert into exemplaire(OeuvreID,Etat) values ('"+e.getOv()+"','"+e.getEtat()+"')";
             DbInteraction.update(sql);
