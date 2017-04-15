@@ -8,14 +8,25 @@ package bibal_yazid_saad.View;
 import bibal_yazid_saad.Connection.DbInteraction;
 import bibal_yazid_saad.Controller.ExemplaireControler;
 import bibal_yazid_saad.Controller.OeuvreControler;
+import bibal_yazid_saad.Controller.ReservationControler;
+import bibal_yazid_saad.Controller.UsagerControler;
 import bibal_yazid_saad.Model.Oeuvre;
+import static bibal_yazid_saad.View.IHMusager.convertUtilDateToSqlDate;
 
 import com.mysql.jdbc.PreparedStatement;
+import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
 import java.sql.ResultSet;
 import java.awt.event.KeyEvent;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+
 //import net.proteanit.sql.DbUtils;
 
 
@@ -30,6 +41,8 @@ public class IHMreservation extends javax.swing.JFrame {
      */
     OeuvreControler  oc=new OeuvreControler(); 
     ExemplaireControler ec=new ExemplaireControler();
+    UsagerControler uc=new UsagerControler();
+    ReservationControler rc=new ReservationControler();
        
     public IHMreservation() {
         initComponents();
@@ -49,17 +62,21 @@ public class IHMreservation extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        usID = new javax.swing.JTextField();
-        ajouter = new javax.swing.JButton();
-        Bsupp = new javax.swing.JButton();
+        reserID = new javax.swing.JTextField();
+        reserver = new javax.swing.JButton();
         vd = new javax.swing.JButton();
-        Bmodf = new javax.swing.JButton();
         Blist12 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         oeid = new javax.swing.JTextField();
         vidertableau = new javax.swing.JButton();
         chexp = new javax.swing.JButton();
-        etat = new javax.swing.JComboBox<>();
+        etatres = new javax.swing.JComboBox<>();
+        annuler = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        usID = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        cherID = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableReservation = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -70,6 +87,14 @@ public class IHMreservation extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TableOeuvre2 = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        NomForSearch4 = new javax.swing.JLabel();
+        Nomrech3 = new javax.swing.JTextField();
+        Blist4 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TableUsager = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -94,44 +119,28 @@ public class IHMreservation extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Etat");
 
-        usID.setEditable(false);
-        usID.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        usID.addKeyListener(new java.awt.event.KeyAdapter() {
+        reserID.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        reserID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                usIDKeyTyped(evt);
+                reserIDKeyTyped(evt);
             }
         });
 
-        ajouter.setBackground(new java.awt.Color(0, 0, 0));
-        ajouter.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        ajouter.setForeground(new java.awt.Color(255, 255, 255));
-        ajouter.setText("Ajouter");
-        ajouter.addActionListener(new java.awt.event.ActionListener() {
+        reserver.setBackground(new java.awt.Color(0, 0, 0));
+        reserver.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        reserver.setForeground(new java.awt.Color(255, 255, 255));
+        reserver.setText("Creér Reservation");
+        reserver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajouterActionPerformed(evt);
+                reserverActionPerformed(evt);
             }
         });
-        ajouter.addKeyListener(new java.awt.event.KeyAdapter() {
+        reserver.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                ajouterKeyPressed(evt);
+                reserverKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                ajouterKeyReleased(evt);
-            }
-        });
-
-        Bsupp.setBackground(new java.awt.Color(0, 0, 0));
-        Bsupp.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        Bsupp.setForeground(new java.awt.Color(255, 255, 255));
-        Bsupp.setText("Supprimer");
-        Bsupp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BsuppActionPerformed(evt);
-            }
-        });
-        Bsupp.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BsuppKeyPressed(evt);
+                reserverKeyReleased(evt);
             }
         });
 
@@ -142,16 +151,6 @@ public class IHMreservation extends javax.swing.JFrame {
         vd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vdActionPerformed(evt);
-            }
-        });
-
-        Bmodf.setBackground(new java.awt.Color(0, 0, 0));
-        Bmodf.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        Bmodf.setForeground(new java.awt.Color(255, 255, 255));
-        Bmodf.setText("Modifier");
-        Bmodf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BmodfActionPerformed(evt);
             }
         });
 
@@ -167,7 +166,7 @@ public class IHMreservation extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("UsagerID");
+        jLabel5.setText("DateResa");
 
         oeid.setEditable(false);
         oeid.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -190,7 +189,7 @@ public class IHMreservation extends javax.swing.JFrame {
         chexp.setBackground(new java.awt.Color(0, 0, 0));
         chexp.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         chexp.setForeground(new java.awt.Color(255, 255, 255));
-        chexp.setText("Chercher Exemplaire");
+        chexp.setText("Chercher Par Date");
         chexp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chexpActionPerformed(evt);
@@ -205,8 +204,47 @@ public class IHMreservation extends javax.swing.JFrame {
             }
         });
 
-        etat.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        etat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NoChoice", "Reservé", "NonReservé", "Annulé", " " }));
+        etatres.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        etatres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NoChoice", "Reservé", "NonReservé", "Annulé", " " }));
+
+        annuler.setBackground(new java.awt.Color(0, 0, 0));
+        annuler.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        annuler.setForeground(new java.awt.Color(255, 255, 255));
+        annuler.setText("Annuler Reservation");
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("UsagerID");
+
+        usID.setEditable(false);
+        usID.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        usID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usIDKeyTyped(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("ReservationID");
+
+        cherID.setBackground(new java.awt.Color(0, 0, 0));
+        cherID.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        cherID.setForeground(new java.awt.Color(255, 255, 255));
+        cherID.setText("Chercher Par ID");
+        cherID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cherIDActionPerformed(evt);
+            }
+        });
+        cherID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cherIDKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cherIDKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,77 +252,89 @@ public class IHMreservation extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usID, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(oeid)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel2)
-                        .addGap(41, 41, 41)
-                        .addComponent(etat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etatres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(usID)
+                                .addComponent(oeid, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(chexp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(vidertableau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(vd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Bmodf, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Bsupp, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Blist12, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)))
-                .addContainerGap(127, Short.MAX_VALUE))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                            .addComponent(reserID))))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Blist12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(reserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(annuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(vd, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vidertableau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cherID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(chexp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+                .addGap(100, 100, 100))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(oeid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vd))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(124, 124, 124)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(etat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(oeid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vd))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(usID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(etatres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(vidertableau)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(reserver)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(annuler)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cherID))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(Bmodf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ajouter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Bsupp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Blist12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(vidertableau)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(chexp)
-                .addContainerGap())
+                        .addGap(183, 183, 183)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(reserID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Blist12, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(chexp)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(42, 42, 42))))
         );
 
         TableReservation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -379,7 +429,7 @@ public class IHMreservation extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1))
                             .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,53 +469,167 @@ public class IHMreservation extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(TableOeuvre2);
 
+        jPanel6.setBackground(new java.awt.Color(102, 102, 102));
+
+        NomForSearch4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        NomForSearch4.setForeground(new java.awt.Color(255, 255, 255));
+        NomForSearch4.setText("Chercher Par Nom");
+
+        Nomrech3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Nomrech3KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Nomrech3KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Nomrech3KeyTyped(evt);
+            }
+        });
+
+        Blist4.setBackground(new java.awt.Color(0, 0, 0));
+        Blist4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Blist4.setForeground(new java.awt.Color(255, 255, 255));
+        Blist4.setText("Lister Tout");
+        Blist4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Blist4ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Identifier Usager");
+
+        jButton5.setBackground(new java.awt.Color(0, 0, 0));
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Vider Le Tableau");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NomForSearch4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(Blist4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Nomrech3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(225, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(204, 204, 204))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomForSearch4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Nomrech3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Blist4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        TableUsager.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        TableUsager.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        TableUsager.setForeground(new java.awt.Color(102, 102, 102));
+        TableUsager.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nom", "Prenom", "Date_Naissance", "Tel", "Adresse"
+            }
+        ));
+        TableUsager.setGridColor(new java.awt.Color(255, 255, 255));
+        TableUsager.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        TableUsager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableUsagerMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(TableUsager);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(682, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(670, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    
-    private void ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterActionPerformed
+ public static LocalDate convertToEntityAttribute(java.sql.Date date) {
+    return date.toLocalDate();
+  }
+    private void reserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserverActionPerformed
         // TODO add your handling code here:
        
-         if(oeid.getText().equals("") || etat.getSelectedItem().equals("NoChoice")){
+         if(oeid.getText().equals("") || etatres.getSelectedItem().equals("NoChoice")|| usID.getText().equals("")){
              JOptionPane.showMessageDialog(null, "Remplir Tous Les Champs Avant Ajouter","Erreur",JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Choisir Un Etat D'Exemplaire","Erreur",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Choisir Un Etat De Reservation","Erreur",JOptionPane.ERROR_MESSAGE);
          }
          else{
              
-      
-        ec.ajouterExemplaire(Integer.parseInt(oeid.getText()),etat.getSelectedItem().toString());
+        
+             
+    
+   
+              
+        rc.reserver(oeid.getText(), usID.getText(),convertToEntityAttribute(Date.valueOf(LocalDate.now())),etatres.getSelectedItem().toString());
         JOptionPane.showMessageDialog(null, "Ajout Avec Succés","OK",JOptionPane.INFORMATION_MESSAGE);
         
-        ec.Lister();
+        rc.Lister();
         TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
           viderr();
          
@@ -473,7 +637,7 @@ public class IHMreservation extends javax.swing.JFrame {
          
          }
          
-    }//GEN-LAST:event_ajouterActionPerformed
+    }//GEN-LAST:event_reserverActionPerformed
 
     private void BlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlistActionPerformed
         // TODO add your handling code here:
@@ -525,31 +689,14 @@ public class IHMreservation extends javax.swing.JFrame {
          
     }//GEN-LAST:event_TitrechKeyReleased
 public  void viderr(){
-        usID.setText("");
-        etat.setSelectedItem("");
+        reserID.setText("");
+        etatres.setSelectedItem("");
         
 }
-    private void BsuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsuppActionPerformed
-        // TODO add your handling code here:
-     
-         
-        int row=IHMreservation.TableReservation.getSelectedRow();
-        String ide=(TableReservation.getModel().getValueAt(row, 0).toString());
-         ec.SupprimerExemplaire(Integer.parseInt(ide));
-  
-         JOptionPane.showMessageDialog(null, "Suppression Avec Succés");
-         ec.Lister();
-          TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
-            viderr();
-        
-        
-        
-    }//GEN-LAST:event_BsuppActionPerformed
-
-    private void usIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usIDKeyTyped
+    private void reserIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reserIDKeyTyped
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_usIDKeyTyped
+    }//GEN-LAST:event_reserIDKeyTyped
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -589,33 +736,15 @@ public  void viderr(){
        
     }//GEN-LAST:event_TitrechKeyPressed
 
-    private void BsuppKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BsuppKeyPressed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_BsuppKeyPressed
-
-    private void ajouterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ajouterKeyReleased
+    private void reserverKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reserverKeyReleased
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_ajouterKeyReleased
+    }//GEN-LAST:event_reserverKeyReleased
 
-    private void ajouterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ajouterKeyPressed
+    private void reserverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reserverKeyPressed
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_ajouterKeyPressed
-
-    private void BmodfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmodfActionPerformed
-        // TODO add your handling code here:
-            int row=IHMreservation.TableReservation.getSelectedRow();
-            String ide=(TableReservation.getModel().getValueAt(row, 0).toString());
-        ec.ModifierExemplaire(etat.getSelectedItem().toString(),Integer.parseInt(ide));
-
-        JOptionPane.showMessageDialog(null, "Modification Avec Succés");
-        viderr();
-        ec.Lister();
-         TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
-
-    }//GEN-LAST:event_BmodfActionPerformed
+    }//GEN-LAST:event_reserverKeyPressed
 
     private void TableOeuvre2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOeuvre2MouseClicked
         // TODO add your handling code here:
@@ -633,8 +762,7 @@ public  void viderr(){
                 
                 String add1=DbInteraction.rs.getString("ID");
                 oeid.setText(add1);
-                String add2=DbInteraction.rs.getString("Titre");
-                usID.setText(add2);
+                
                  
                  
            
@@ -667,7 +795,7 @@ public  void viderr(){
 
     private void chexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chexpActionPerformed
         // TODO add your handling code here:
-          ec.FindByOeuvre(usID.getText());
+          ec.FindByOeuvre(reserID.getText());
         TableReservation.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
     }//GEN-LAST:event_chexpActionPerformed
 
@@ -678,6 +806,96 @@ public  void viderr(){
     private void chexpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chexpKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_chexpKeyReleased
+
+    private void usIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usIDKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usIDKeyTyped
+
+    private void cherIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cherIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cherIDActionPerformed
+
+    private void cherIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cherIDKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cherIDKeyPressed
+
+    private void cherIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cherIDKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cherIDKeyReleased
+
+    private void Nomrech3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Nomrech3KeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_Nomrech3KeyPressed
+
+    private void Nomrech3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Nomrech3KeyReleased
+        // TODO add your handling code here:
+
+        uc.FindByName(Nomrech.getText());
+        TableUsager.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+        // if(Nomrech.getText().equals("")){
+            //     videtable();
+            // }
+
+        if( evt.getKeyCode() == KeyEvent.VK_BACK_SPACE ){
+
+            videtable();
+
+        }
+
+    }//GEN-LAST:event_Nomrech3KeyReleased
+
+    private void Nomrech3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Nomrech3KeyTyped
+        // TODO add your handling code here:char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
+        //le caractère est numérique
+        if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' ) {
+            // System.out.println(evt);
+        } else {
+            //suppression du caractère
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_Nomrech3KeyTyped
+
+    private void Blist4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Blist4ActionPerformed
+        // TODO add your handling code here:
+
+        uc.Lister();
+        TableUsager.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+    }//GEN-LAST:event_Blist4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        videtable();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void TableUsagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableUsagerMouseClicked
+        // TODO add your handling code here:
+        try {
+            int row=TableUsager.getSelectedRow();
+            String Table_click=(TableUsager.getModel().getValueAt(row, 0).toString());
+
+            String sql="select * from usager where ID='"+Table_click+"' ";
+            DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
+            DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
+
+            if(DbInteraction.rs.next()){
+
+                String add1=DbInteraction.rs.getString("ID");
+                usID.setText(add1);
+                
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_TableUsagerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -723,31 +941,75 @@ public  void viderr(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Blist;
+    private javax.swing.JButton Blist1;
     private javax.swing.JButton Blist12;
-    private javax.swing.JButton Bmodf;
-    private javax.swing.JButton Bsupp;
+    private javax.swing.JButton Blist2;
+    private javax.swing.JButton Blist3;
+    private javax.swing.JButton Blist4;
     private javax.swing.JLabel NomForSearch;
+    private javax.swing.JLabel NomForSearch1;
+    private javax.swing.JLabel NomForSearch2;
+    private javax.swing.JLabel NomForSearch3;
+    private javax.swing.JLabel NomForSearch4;
+    private javax.swing.JTextField Nomrech;
+    private javax.swing.JTextField Nomrech1;
+    private javax.swing.JTextField Nomrech2;
+    private javax.swing.JTextField Nomrech3;
     private javax.swing.JTable TableOeuvre2;
     private static javax.swing.JTable TableReservation;
+    private static javax.swing.JTable TableUsager;
     private javax.swing.JTextField Titrech;
-    private javax.swing.JButton ajouter;
+    private javax.swing.JButton annuler;
+    private javax.swing.JButton cherID;
     private javax.swing.JButton chexp;
-    private javax.swing.JComboBox<String> etat;
+    private javax.swing.JComboBox<String> etatres;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField oeid;
+    private javax.swing.JTextField reserID;
+    private javax.swing.JButton reserver;
     private javax.swing.JTextField usID;
     private javax.swing.JButton vd;
     private javax.swing.JButton vidertableau;
     // End of variables declaration//GEN-END:variables
 
-  
+  public static java.sql.Date convertUtilDateToSqlDate(java.util.Date date){
+   
+      
+      
+      
+      if(date != null) {
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        return sqlDate;
+    }
+    else
+    {
+        JOptionPane.showMessageDialog(null,"Enter Une Date De Reservation","Erreur",JOptionPane.ERROR_MESSAGE);
+    }
+    return null;
+}
 }

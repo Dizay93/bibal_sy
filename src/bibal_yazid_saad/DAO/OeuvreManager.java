@@ -7,14 +7,12 @@ package bibal_yazid_saad.DAO;
 
 import bibal_yazid_saad.Connection.DbInteraction;
 import bibal_yazid_saad.Model.Oeuvre;
-import bibal_yazid_saad.View.IHMoeuvre;
 
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.proteanit.sql.DbUtils;
 
 
 /**

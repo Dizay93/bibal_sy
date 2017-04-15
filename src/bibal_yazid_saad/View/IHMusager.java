@@ -7,15 +7,9 @@ package bibal_yazid_saad.View;
 
 import bibal_yazid_saad.Connection.DbInteraction;
 import bibal_yazid_saad.Controller.UsagerControler;
-import static bibal_yazid_saad.Connection.DbInteraction.st;
-import bibal_yazid_saad.DAO.UsagerManager;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.awt.event.KeyEvent;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

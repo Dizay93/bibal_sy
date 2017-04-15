@@ -7,15 +7,21 @@
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Controller/UsagerControler.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/OeuvreInterface.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/ExemplaireManager.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/View/IHMreservation.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Controller/ExemplaireControler.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Connection/DbInteraction.java</file>
-            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/View/IHMusager.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/EmpruntManager.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/EmpruntInterface.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Model/Usager.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/View/IHMusager.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/ReservationInterface.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/UsagerInterface.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Controller/OeuvreControler.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Controller/ReservationControler.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Model/Reservation.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Model/Exemplaire.java</file>
+            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/ReservationManager.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/View/IHMexemplaire.java</file>
-            <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/View/IHMoeuvre.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/Model/Oeuvre.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/UsagerManager.java</file>
             <file>file:/C:/Users/Yazid/Documents/NetBeansProjects/bibal_yazid_saad-master/src/bibal_yazid_saad/DAO/ExemplaireInterface.java</file>
