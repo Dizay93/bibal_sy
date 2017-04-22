@@ -566,13 +566,18 @@ public  void viderr(){
          
         int row=IHMexemplaire.TableExemplaire.getSelectedRow();
         String ide=(TableExemplaire.getModel().getValueAt(row, 0).toString());
+        
+        int i=JOptionPane.showConfirmDialog(this, "Voulez Vous Vraiment Supprimer Cet Exemplaire?","Supprimer",JOptionPane.YES_NO_OPTION);
+         switch(i){
+                
+                case 0 :
          ec.SupprimerExemplaire(Integer.parseInt(ide));
-  
          JOptionPane.showMessageDialog(null, "Suppression Avec Succés");
          ec.Lister();
           TableExemplaire.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
             viderr();
-        
+        case 1 :
+          }
         
         
     }//GEN-LAST:event_BsuppActionPerformed
