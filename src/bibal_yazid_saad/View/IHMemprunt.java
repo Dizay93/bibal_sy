@@ -89,7 +89,6 @@ public class IHMemprunt extends javax.swing.JFrame {
         TableEmprunt = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         NomForSearch = new javax.swing.JLabel();
-        Blist = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         comboeuvre = new javax.swing.JComboBox<>();
@@ -103,6 +102,7 @@ public class IHMemprunt extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         TableUsager = new javax.swing.JTable();
+        Menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -124,11 +124,6 @@ public class IHMemprunt extends javax.swing.JFrame {
         jLabel1.setText("ExemplaireID");
 
         empruntid.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        empruntid.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                empruntidKeyTyped(evt);
-            }
-        });
 
         emprunter.setBackground(new java.awt.Color(0, 0, 0));
         emprunter.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -137,14 +132,6 @@ public class IHMemprunt extends javax.swing.JFrame {
         emprunter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emprunterActionPerformed(evt);
-            }
-        });
-        emprunter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                emprunterKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                emprunterKeyReleased(evt);
             }
         });
 
@@ -174,11 +161,6 @@ public class IHMemprunt extends javax.swing.JFrame {
 
         exmpid.setEditable(false);
         exmpid.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        exmpid.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                exmpidKeyTyped(evt);
-            }
-        });
 
         vidertableau.setBackground(new java.awt.Color(0, 0, 0));
         vidertableau.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -199,14 +181,6 @@ public class IHMemprunt extends javax.swing.JFrame {
                 chempActionPerformed(evt);
             }
         });
-        chemp.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                chempKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                chempKeyReleased(evt);
-            }
-        });
 
         rendreemp.setBackground(new java.awt.Color(0, 0, 0));
         rendreemp.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -224,11 +198,6 @@ public class IHMemprunt extends javax.swing.JFrame {
 
         usID.setEditable(false);
         usID.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        usID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                usIDKeyTyped(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -241,14 +210,6 @@ public class IHMemprunt extends javax.swing.JFrame {
         cherID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cherIDActionPerformed(evt);
-            }
-        });
-        cherID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cherIDKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cherIDKeyReleased(evt);
             }
         });
 
@@ -267,14 +228,6 @@ public class IHMemprunt extends javax.swing.JFrame {
         chempintervale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chempintervaleActionPerformed(evt);
-            }
-        });
-        chempintervale.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                chempintervaleKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                chempintervaleKeyReleased(evt);
             }
         });
 
@@ -392,7 +345,6 @@ public class IHMemprunt extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(empruntid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cherID)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -451,16 +403,6 @@ public class IHMemprunt extends javax.swing.JFrame {
         NomForSearch.setForeground(new java.awt.Color(255, 255, 255));
         NomForSearch.setText("Chercher Par Oeuvre");
 
-        Blist.setBackground(new java.awt.Color(0, 0, 0));
-        Blist.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        Blist.setForeground(new java.awt.Color(255, 255, 255));
-        Blist.setText("Lister Tout");
-        Blist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BlistActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Identifier Exemplaire");
@@ -476,6 +418,12 @@ public class IHMemprunt extends javax.swing.JFrame {
         });
 
         comboeuvre.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        comboeuvre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NoChoice" }));
+        comboeuvre.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboeuvreItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -491,12 +439,11 @@ public class IHMemprunt extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboeuvre, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Blist)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboeuvre, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,10 +456,8 @@ public class IHMemprunt extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(comboeuvre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(Blist))
-                .addGap(23, 23, 23))
+                .addComponent(jButton1)
+                .addGap(29, 29, 29))
         );
 
         TableExemplaire2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -545,9 +490,6 @@ public class IHMemprunt extends javax.swing.JFrame {
         NomForSearch4.setText("Chercher Par Nom");
 
         Nomrech.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                NomrechKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 NomrechKeyReleased(evt);
             }
@@ -594,7 +536,7 @@ public class IHMemprunt extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Nomrech, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(236, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -638,26 +580,38 @@ public class IHMemprunt extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(TableUsager);
 
+        Menu.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bibal_yazid_saad/View/1492889707_go-home.png"))); // NOI18N
+        Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -670,20 +624,31 @@ public class IHMemprunt extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addContainerGap(582, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(509, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void currentdatere(){
+public void currentdateemp(){
     Calendar cal=new GregorianCalendar();
         int Year=cal.get(Calendar.YEAR);
     int Month=cal.get(Calendar.MONTH); 
     int Day=cal.get(Calendar.DAY_OF_MONTH);
    dateempr.setDate(java.sql.Date.valueOf(Year+"-"+Month+"-"+Day));
+    
+}
+public void currentdaterteffective(){
+    Calendar cal=new GregorianCalendar();
+        int Year=cal.get(Calendar.YEAR);
+    int Month=cal.get(Calendar.MONTH); 
+    int Day=cal.get(Calendar.DAY_OF_MONTH);
+   dateretour.setDate(java.sql.Date.valueOf(Year+"-"+Month+"-"+Day));
     
 }
 
@@ -702,7 +667,7 @@ public void currentdatere(){
                       
              
                
-         pc.emprunter(Integer.parseInt(exmpid.getText()), Integer.parseInt(usID.getText()), convertUtilDateToSqlDate(dateempr.getDate()), convertUtilDateToSqlDate(dateempprev.getDate()));
+         pc.emprunter(exmpid.getText(), usID.getText(), convertUtilDateToSqlDate(dateempr.getDate()), convertUtilDateToSqlDate(dateempprev.getDate()));
         JOptionPane.showMessageDialog(null, "Ajout Avec Succés","OK",JOptionPane.INFORMATION_MESSAGE);
         
         pc.Lister();
@@ -715,23 +680,14 @@ public void currentdatere(){
          
     }//GEN-LAST:event_emprunterActionPerformed
 
-    private void BlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlistActionPerformed
-        // TODO add your handling code here:
-        
-        ec.Lister();
-      TableExemplaire2.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
-    }//GEN-LAST:event_BlistActionPerformed
-
     private void TableEmpruntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableEmpruntMouseClicked
         // TODO add your handling code here:
          try {
             int row=TableEmprunt.getSelectedRow();
             String Table_click=(TableEmprunt.getModel().getValueAt(row, 0).toString());
             
-             String sql="select * from emprunt where ID='"+Table_click+"' ";
-            DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
-            DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
             
+            pc.FindForJtable(Table_click);
             if(DbInteraction.rs.next()){
                 
                 
@@ -791,15 +747,10 @@ public void currentdatere(){
         
         
 }
-    private void empruntidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_empruntidKeyTyped
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_empruntidKeyTyped
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         
-        currentdatere();
+        currentdateemp();
             
         EmpruntManager em=new EmpruntManager();
         em.listeoeuvre();
@@ -825,16 +776,6 @@ public void currentdatere(){
         viderr();
     }//GEN-LAST:event_vdActionPerformed
 
-    private void emprunterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emprunterKeyReleased
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_emprunterKeyReleased
-
-    private void emprunterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emprunterKeyPressed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_emprunterKeyPressed
-
     private void TableExemplaire2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableExemplaire2MouseClicked
         // TODO add your handling code here:
         
@@ -842,9 +783,7 @@ public void currentdatere(){
             int row=TableExemplaire2.getSelectedRow();
             String Table_click=(TableExemplaire2.getModel().getValueAt(row, 0).toString());
             
-             String sql="select * from exemplaire where ID='"+Table_click+"' ";
-            DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
-            DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
+           ec.FindForJtable(Table_click);
             
             if(DbInteraction.rs.next()){
                 
@@ -873,10 +812,6 @@ public void currentdatere(){
                 
     }//GEN-LAST:event_Blist12ActionPerformed
 
-    private void exmpidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_exmpidKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exmpidKeyTyped
-
     private void vidertableauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vidertableauActionPerformed
         // TODO add your handling code here:
         videtableex();
@@ -889,18 +824,6 @@ public void currentdatere(){
 
       
     }//GEN-LAST:event_chempActionPerformed
-
-    private void chempKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chempKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chempKeyPressed
-
-    private void chempKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chempKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chempKeyReleased
-
-    private void usIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usIDKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usIDKeyTyped
 
     private void cherIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cherIDActionPerformed
         // TODO add your handling code here:
@@ -920,19 +843,6 @@ public void currentdatere(){
         }
         
     }//GEN-LAST:event_cherIDActionPerformed
-
-    private void cherIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cherIDKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cherIDKeyPressed
-
-    private void cherIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cherIDKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cherIDKeyReleased
-
-    private void NomrechKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomrechKeyPressed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_NomrechKeyPressed
 
     private void NomrechKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomrechKeyReleased
         // TODO add your handling code here:
@@ -982,9 +892,7 @@ public void currentdatere(){
             int row=TableUsager.getSelectedRow();
             String Table_click=(TableUsager.getModel().getValueAt(row, 0).toString());
 
-            String sql="select * from usager where ID='"+Table_click+"' ";
-            DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
-            DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
+           uc.FindForJtable(Table_click);
 
             if(DbInteraction.rs.next()){
 
@@ -1005,7 +913,7 @@ public void currentdatere(){
 
     private void rendreempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rendreempActionPerformed
         // TODO add your handling code here:
-       
+       currentdaterteffective();
          int row=IHMemprunt.TableEmprunt.getSelectedRow();
          String idp=(TableEmprunt.getModel().getValueAt(row, 0).toString());
          pc.rendre(convertUtilDateToSqlDate(dateretour.getDate()),Integer.parseInt(idp));
@@ -1022,13 +930,18 @@ public void currentdatere(){
          TableEmprunt.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
     }//GEN-LAST:event_chempintervaleActionPerformed
 
-    private void chempintervaleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chempintervaleKeyPressed
+    private void comboeuvreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboeuvreItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_chempintervaleKeyPressed
+         ec.FindByOeuvre(comboeuvre.getSelectedItem().toString());
+        TableExemplaire2.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
+    }//GEN-LAST:event_comboeuvreItemStateChanged
 
-    private void chempintervaleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chempintervaleKeyReleased
+    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chempintervaleKeyReleased
+        this.dispose();
+        Menu menu=new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_MenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1081,9 +994,9 @@ public void currentdatere(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Blist;
     private javax.swing.JButton Blist12;
     private javax.swing.JButton Blist4;
+    private javax.swing.JButton Menu;
     private javax.swing.JLabel NomForSearch;
     private javax.swing.JLabel NomForSearch4;
     private javax.swing.JTextField Nomrech;
