@@ -7,8 +7,6 @@ package bibal_yazid_saad.View;
 
 import bibal_yazid_saad.Connection.DbInteraction;
 import bibal_yazid_saad.Controller.OeuvreControler;
-import com.mysql.jdbc.PreparedStatement;
-import java.sql.ResultSet;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -65,13 +63,9 @@ public class IHMoeuvre extends javax.swing.JFrame {
         Blist = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        Menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -113,11 +107,6 @@ public class IHMoeuvre extends javax.swing.JFrame {
 
         L2.setEditable(false);
         L2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        L2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                L2KeyTyped(evt);
-            }
-        });
 
         ajouter.setBackground(new java.awt.Color(0, 0, 0));
         ajouter.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -128,14 +117,6 @@ public class IHMoeuvre extends javax.swing.JFrame {
                 ajouterActionPerformed(evt);
             }
         });
-        ajouter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ajouterKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                ajouterKeyReleased(evt);
-            }
-        });
 
         Bsupp.setBackground(new java.awt.Color(0, 0, 0));
         Bsupp.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -144,11 +125,6 @@ public class IHMoeuvre extends javax.swing.JFrame {
         Bsupp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BsuppActionPerformed(evt);
-            }
-        });
-        Bsupp.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BsuppKeyPressed(evt);
             }
         });
 
@@ -164,11 +140,6 @@ public class IHMoeuvre extends javax.swing.JFrame {
 
         L1.setEditable(false);
         L1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        L1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                L1KeyTyped(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -196,18 +167,18 @@ public class IHMoeuvre extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(auteur, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Bsupp, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vd)
                     .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Typee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -282,9 +253,6 @@ public class IHMoeuvre extends javax.swing.JFrame {
         NomForSearch.setText("Chercher Par Titre");
 
         Titrech.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TitrechKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TitrechKeyReleased(evt);
             }
@@ -322,25 +290,25 @@ public class IHMoeuvre extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(NomForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(Blist, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(476, 476, 476))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(NomForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Titrech, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(Blist, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(451, 451, 451)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -350,6 +318,14 @@ public class IHMoeuvre extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
+        Menu.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bibal_yazid_saad/View/1492889707_go-home.png"))); // NOI18N
+        Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -358,14 +334,20 @@ public class IHMoeuvre extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2)
                 .addContainerGap())
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -414,9 +396,7 @@ public class IHMoeuvre extends javax.swing.JFrame {
             int row=TableOeuvre.getSelectedRow();
             String Table_click=(TableOeuvre.getModel().getValueAt(row, 0).toString());
             
-             String sql="select * from oeuvre where ID='"+Table_click+"' ";
-            DbInteraction.pst=(PreparedStatement) DbInteraction.con.prepareStatement(sql);
-            DbInteraction.rs=(com.mysql.jdbc.ResultSet) (ResultSet) DbInteraction.pst.executeQuery(sql);
+             oc.FindForJtable(Table_click);
             
             if(DbInteraction.rs.next()){
                 
@@ -481,20 +461,20 @@ public  void viderr(){
          
         int row=IHMoeuvre.TableOeuvre.getSelectedRow();
         String ido=(TableOeuvre.getModel().getValueAt(row, 0).toString());
+        int i=JOptionPane.showConfirmDialog(this, "Voulez Vous Vraiment Supprimer Cette Oeuvre?","Supprimer",JOptionPane.YES_NO_OPTION);
+        switch(i){
+                
+                case 0 :
          oc.SupprimerOeuvre(Integer.parseInt(ido));
-  
          JOptionPane.showMessageDialog(null, "Suppression Avec Succés");
          oc.Lister();
          TableOeuvre.setModel(DbUtils.resultSetToTableModel(DbInteraction.rs));
         viderr();
         
-        
+        case 1 :
+          }
         
     }//GEN-LAST:event_BsuppActionPerformed
-
-    private void L2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_L2KeyTyped
-        // TODO add your handling code her 
-    }//GEN-LAST:event_L2KeyTyped
 
     private void titreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_titreKeyTyped
         // TODO add your handling code here:
@@ -522,14 +502,6 @@ public  void viderr(){
                 }
     }//GEN-LAST:event_auteurKeyTyped
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
-        
-          
-            
-    
-    }//GEN-LAST:event_formWindowActivated
-
     private void TitrechKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TitrechKeyTyped
         // TODO add your handling code here:char c = evt.getKeyChar();
           char c = evt.getKeyChar();
@@ -555,30 +527,6 @@ public  void viderr(){
         viderr();
     }//GEN-LAST:event_vdActionPerformed
 
-    private void TitrechKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TitrechKeyPressed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_TitrechKeyPressed
-
-    private void BsuppKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BsuppKeyPressed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_BsuppKeyPressed
-
-    private void ajouterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ajouterKeyReleased
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_ajouterKeyReleased
-
-    private void ajouterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ajouterKeyPressed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_ajouterKeyPressed
-
-    private void L1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_L1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_L1KeyTyped
-
     private void TypeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TypeeItemStateChanged
         // TODO add your handling code here:
         if(Typee.getSelectedItem()=="Livre"){
@@ -595,6 +543,13 @@ public  void viderr(){
         }
         
     }//GEN-LAST:event_TypeeItemStateChanged
+
+    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Menu menu=new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_MenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -637,6 +592,7 @@ public  void viderr(){
     private javax.swing.JButton Bsupp;
     private javax.swing.JTextField L1;
     private javax.swing.JTextField L2;
+    private javax.swing.JButton Menu;
     private javax.swing.JLabel NomForSearch;
     private static javax.swing.JTable TableOeuvre;
     private javax.swing.JTextField Titrech;
